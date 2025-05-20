@@ -9,24 +9,40 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace SqlBuilder.NpgsqlSql
 {
+    /// <summary>
+    /// 泛型抽象 Npgsql SQL 建構器，繼承自 AbstractNpgsqlBuilder，提供針對指定模型類型的建構功能。
+    /// </summary>
     internal abstract class AbstractNpgsqlBuilder<TModel> :
         AbstractNpgsqlBuilder where TModel : class
     {
+        /// <summary>
+        /// 以現有建構器與模型型別初始化。
+        /// </summary>
         protected AbstractNpgsqlBuilder(AbstractNpgsqlBuilder builder) : base(builder, typeof(TModel))
         {
         }
 
+        /// <summary>
+        /// 以 DbContext 與模型型別初始化。
+        /// </summary>
         protected AbstractNpgsqlBuilder(
             DbContext dbContext) : base(dbContext, typeof(TModel))
         {
         }
     }
 
+    /// <summary>
+    /// 抽象 Npgsql SQL 建構器，提供 SQL 字串組合、參數管理、欄位與條件運算式解析等功能。
+    /// </summary>
     internal abstract class AbstractNpgsqlBuilder
     {
+        /// <summary>SQL 字串組合器。</summary>
         protected StringBuilder _sb = new StringBuilder();
+        /// <summary>EF Core DbContext</summary>
         protected readonly DbContext _dbContext;
+        /// <summary>EF Core 實體型別</summary>
         protected readonly IEntityType _entityType;
+        /// <summary>SQL 參數</summary>
         protected List<object> _parameters = new List<object>();
         public AbstractNpgsqlBuilder(AbstractNpgsqlBuilder builder)
         {
@@ -55,11 +71,18 @@ namespace SqlBuilder.NpgsqlSql
             _entityType = _dbContext.Model.FindEntityType(entityType);
         }
 
+        /// <summary>
+        /// 取得 SQL 參數列表
+        /// </summary>
         public List<object> Parameters
         {
             get { return _parameters; }
         }
 
+        /// <summary>
+        /// 產生 SQL 字串
+        /// </summary>
+        /// <returns></returns>
         public string ToSql()
         {
             int i = 0;
@@ -68,17 +91,31 @@ namespace SqlBuilder.NpgsqlSql
             return sql;
         }
 
+        /// <summary>
+        /// 取得資料表名稱
+        /// </summary>
+        /// <returns></returns>
         protected string GetTableName()
         {
             return _entityType.GetTableName();
         }
 
+        /// <summary>
+        /// 取得欄位名稱
+        /// </summary>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
         protected string GetColumnName(string propertyName)
         {
             var property = _entityType?.GetProperty(propertyName);
             return property.GetColumnBaseName();
         }
 
+        /// <summary>
+        /// 解析 Where 子句中的運算式
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         protected string GetExpressionWhere(Expression expression)
         {
             if (expression is UnaryExpression)
@@ -127,6 +164,11 @@ namespace SqlBuilder.NpgsqlSql
             return GetExpressionValue(expression);
         }
 
+        /// <summary>
+        /// 取得運算式的值
+        /// </summary>
+        /// <param name="expression"></param>
+        /// <returns></returns>
         protected string GetExpressionValue(Expression expression)
         {
             if (expression is ConstantExpression)
@@ -154,6 +196,11 @@ namespace SqlBuilder.NpgsqlSql
             return GetParameterValue(Expression.Lambda(expression).Compile().DynamicInvoke());
         }
 
+        /// <summary>
+        /// 取得參數的值
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         protected string GetParameterValue(object value)
         {
             if (value is IEnumerable)

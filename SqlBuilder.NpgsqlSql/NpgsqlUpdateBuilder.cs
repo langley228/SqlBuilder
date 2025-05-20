@@ -5,14 +5,29 @@ using System.Reflection;
 
 namespace SqlBuilder.NpgsqlSql
 {
+    /// <summary>
+    /// Npgsql UPDATE SQL 語句建構器，實作 ISqlRawUpdateBuilder 介面，提供 SET 與欄位累加等功能。
+    /// </summary>
+    /// <typeparam name="TModel">資料模型類型，必須為參考型別。</typeparam>
     internal class NpgsqlUpdateBuilder<TModel> :
         AbstractNpgsqlBuilder<TModel>,
         ISqlRawUpdateBuilder<TModel> where TModel : class
     {
+        /// <summary>
+        /// 以現有建構器初始化 UPDATE 語句建構器。
+        /// </summary>
+        /// <param name="builder">抽象建構器實例。</param>
         public NpgsqlUpdateBuilder(AbstractNpgsqlBuilder<TModel> builder) : base(builder)
         {
         }
 
+        /// <summary>
+        /// 單一欄位值累加。
+        /// </summary>
+        /// <typeparam name="TProperty">欄位型別。</typeparam>
+        /// <param name="expression">指定要累加的欄位運算式。</param>
+        /// <param name="value">累加的值。</param>
+        /// <returns>回傳可設定 SET 與 WHERE 條件的建構器。</returns>
         public ISqlRawUpdateSetBuilder<TModel> Inc<TProperty>(
             Expression<Func<TModel, TProperty>> expression,
             TProperty value)
@@ -24,6 +39,13 @@ namespace SqlBuilder.NpgsqlSql
             return new NpgsqlUpdateSetBuilder<TModel>(this);
         }
 
+        /// <summary>
+        /// 設定單一欄位值。
+        /// </summary>
+        /// <typeparam name="TProperty">欄位型別。</typeparam>
+        /// <param name="expression">指定要設定的欄位運算式。</param>
+        /// <param name="value">設定的值。</param>
+        /// <returns>回傳可設定 SET 與 WHERE 條件的建構器。</returns>
         public ISqlRawUpdateSetBuilder<TModel> Set<TProperty>(
             Expression<Func<TModel, TProperty>> expression,
             TProperty value)
@@ -34,6 +56,12 @@ namespace SqlBuilder.NpgsqlSql
             return new NpgsqlUpdateSetBuilder<TModel>(this);
         }
 
+        /// <summary>
+        /// 依次設定多欄位值。
+        /// </summary>
+        /// <typeparam name="TSet">設定值的型別，必須為參考型別。</typeparam>
+        /// <param name="setValue">包含多個欄位設定值的物件。</param>
+        /// <returns>回傳可設定 SET 與 WHERE 條件的建構器。</returns>
         public ISqlRawUpdateSetBuilder<TModel> Set<TSet>(TSet setValue) where TSet : class
         {
             Type typeM = typeof(TModel);
