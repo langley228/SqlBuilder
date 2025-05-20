@@ -14,6 +14,17 @@ namespace SqlBuilder.Sample.Models
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql(_connectionString);
+        {
+            if (_connectionString.Contains("Host=") || _connectionString.Contains("Port="))
+            {
+                // PostgreSQL
+                optionsBuilder.UseNpgsql(_connectionString);
+            }
+            else
+            {
+                // SQL Server
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+        }
     }
 }
