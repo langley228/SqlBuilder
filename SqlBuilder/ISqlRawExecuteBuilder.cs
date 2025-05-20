@@ -3,50 +3,54 @@ using System.Threading.Tasks;
 
 namespace SqlBuilder
 {
+    /// <summary>
+    /// 定義可執行 SQL 語句的建構器介面，提供建構與執行 DELETE、UPDATE 等 SQL 操作的方法。
+    /// </summary>
+    /// <typeparam name="TModel">資料模型類型，必須為參考型別。</typeparam>
     public interface ISqlRawExecuteBuilder<TModel> :
         ISqlRawBuilder<TModel>,
         ISqlRawWhereBuilder<TModel>
         where TModel : class
     {
         /// <summary>
-        /// Delete 起手式
+        /// 建立 DELETE SQL 語句的建構器（針對 TModel）。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>DELETE 語句建構器。</returns>
         ISqlRawDeleteBuilder<TModel> SqlRawFoDelete();
 
         /// <summary>
-        /// Update 起手式
+        /// 建立 UPDATE SQL 語句的建構器（針對 TModel）。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>UPDATE 語句建構器。</returns>
         ISqlRawUpdateBuilder<TModel> SqlRawForUpdate();
 
         /// <summary>
-        /// Delete 起手式
+        /// 建立 DELETE SQL 語句的建構器（針對指定模型類型）。
         /// </summary>
-        /// <typeparam name="TModel2"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="TModel2">指定的資料模型類型。</typeparam>
+        /// <returns>DELETE 語句建構器。</returns>
         ISqlRawDeleteBuilder<TModel2> SqlRawFoDelete<TModel2>()
             where TModel2 : class;
 
         /// <summary>
-        /// Update 起手式
+        /// 建立 UPDATE SQL 語句的建構器（針對指定模型類型）。
         /// </summary>
-        /// <typeparam name="TModel2"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="TModel2">指定的資料模型類型。</typeparam>
+        /// <returns>UPDATE 語句建構器。</returns>
         ISqlRawUpdateBuilder<TModel2> SqlRawForUpdate<TModel2>()
             where TModel2 : class;
 
         /// <summary>
-        /// 執行 Sql , 建議要包交易
+        /// 執行 SQL 語句，建議包在交易中。
         /// </summary>
-        /// <returns></returns>
+        /// <returns>受影響的資料列數。</returns>
         int ExecuteSqlRaw();
 
         /// <summary>
-        /// 執行 Sql , 建議要包交易
+        /// 非同步執行 SQL 語句，建議包在交易中。
         /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="cancellationToken">取消作業的通知。</param>
+        /// <returns>受影響的資料列數。</returns>
         Task<int> ExecuteSqlRawAsync(
             CancellationToken cancellationToken = default);
     }
