@@ -108,7 +108,7 @@ namespace SqlBuilder.NpgsqlSql
         protected string GetColumnName(string propertyName)
         {
             var property = _entityType?.GetProperty(propertyName);
-            return property.GetColumnBaseName();
+            return property.GetColumnName();
         }
 
         /// <summary>
@@ -205,13 +205,16 @@ namespace SqlBuilder.NpgsqlSql
         {
             if (value is IEnumerable)
             {
-                var values = value as IEnumerable;
-                List<string> parameterList = new List<string>();
-                foreach (var item in values)
+                if (value is not string)
                 {
-                    parameterList.Add(GetParameterValue(item));
+                    var values = value as IEnumerable;
+                    List<string> parameterList = new List<string>();
+                    foreach (var item in values)
+                    {
+                        parameterList.Add(GetParameterValue(item));
+                    }
+                    return string.Join(",", parameterList);
                 }
-                return string.Join(",", parameterList);
             }
             if (value == null)
                 return $"NULL";

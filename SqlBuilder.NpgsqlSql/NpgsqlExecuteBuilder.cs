@@ -35,7 +35,7 @@ namespace SqlBuilder.NpgsqlSql
         public ISqlRawDeleteBuilder<TModel> SqlRawFoDelete()
         {
             if (_sb.Length > 0)
-                _sb.AppendLine("；");
+                _sb.AppendLine(";");
             _sb.AppendLine($"DELETE FROM {GetTableName()} ");
             return new NpgsqlDeleteBuilder<TModel>(this);
         }
@@ -47,7 +47,7 @@ namespace SqlBuilder.NpgsqlSql
         public ISqlRawUpdateBuilder<TModel> SqlRawForUpdate()
         {
             if (_sb.Length > 0)
-                _sb.AppendLine("；");
+                _sb.AppendLine(";");
             _sb.AppendLine($"UPDATE {GetTableName()} ");
             return new NpgsqlUpdateBuilder<TModel>(this);
         }
@@ -92,7 +92,7 @@ namespace SqlBuilder.NpgsqlSql
         public int ExecuteSqlRaw()
         {
             if (_sb.Length > 0)
-                _sb.AppendLine("；");
+                _sb.AppendLine(";");
             return _dbContext.Database
                 .ExecuteSqlRaw(_sb.ToString(), _parameters);
         }
@@ -106,7 +106,7 @@ namespace SqlBuilder.NpgsqlSql
             CancellationToken cancellationToken = default)
         {
             if (_sb.Length > 0)
-                _sb.AppendLine("；");
+                _sb.AppendLine(";");
             return _dbContext.Database
                 .ExecuteSqlRawAsync(_sb.ToString(), _parameters, cancellationToken);
         }
