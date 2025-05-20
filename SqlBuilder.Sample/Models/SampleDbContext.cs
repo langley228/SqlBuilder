@@ -7,23 +7,30 @@ namespace SqlBuilder.Sample.Models
         public DbSet<User> Users { get; set; }
 
         private readonly string _connectionString;
+        private readonly DbProvider _dbProvider;
 
-        public SampleDbContext(string connectionString)
+        public SampleDbContext(
+            DbProvider provider,
+            string connectionString)
         {
+            _dbProvider = provider;
             _connectionString = connectionString;
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (_connectionString.Contains("Host=") || _connectionString.Contains("Port="))
+            switch (_dbProvider)
             {
-                // PostgreSQL
-                optionsBuilder.UseNpgsql(_connectionString);
-            }
-            else
-            {
-                // SQL Server
-                optionsBuilder.UseSqlServer(_connectionString);
+                case DbProvider.SqlServer:
+                    // SQL Server
+                    optionsBuilder.UseSqlServer(_connectionString);
+                    break;
+                case DbProvider.Npgsql:
+                    // PostgreSQL
+                    optionsBuilder.UseNpgsql(_connectionString);
+                    break;
+                default:
+                    break;
             }
         }
     }
