@@ -9,7 +9,7 @@ namespace SqlBuilder.Sample.Samples
         public static void Sample()
         {
             string connectionString = "Server=localhost;Database=sampledb;User Id=sa;Password=yourpassword;TrustServerCertificate=True;";
-            using var db = new SampleDbContext(DbProvider.Npgsql, connectionString);
+            using var db = new SampleDbContext(DbProvider.SqlServer, connectionString);
 
             // 建立 DELETE SQL
             var deleteSql = db.SqlRawFoDelete<User>()
