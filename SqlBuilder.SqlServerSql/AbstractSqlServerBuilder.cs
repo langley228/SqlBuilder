@@ -86,7 +86,7 @@ namespace SqlBuilder.SqlServer
         public string ToSql()
         {
             int i = 0;
-            string sql = string.Join(Environment.NewLine, _parameters.Select(p => $"-- {{{i++}}} : {p}"));
+            string sql = string.Join(Environment.NewLine, _parameters.Select(p => $"-- @P_{i++} : {p}"));
             sql = $"{sql} {Environment.NewLine}{_sb.ToString()}";
             return sql;
         }

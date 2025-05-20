@@ -90,7 +90,7 @@ sqlDb.SqlServerRawFoDelete<User>()
       .Where(u => u.Id == 1)
       .ExecuteSqlRaw();
 // 產生 SQL：
-// -- {0} : 1
+// -- @P_0 : 1
 // DELETE FROM users
 //  WHERE
 // (id=@P_0)
@@ -101,8 +101,8 @@ sqlDb.SqlServerRawForUpdate<User>()
       .Where(u => u.Id == 1)
       .ExecuteSqlRaw();
 // 產生 SQL：
-// -- {0} : admin
-// -- {1} : 1
+// -- @P_0 : admin
+// -- @P_1 : 1
 // UPDATE users
 //  SET username=@P_0
 //  WHERE
@@ -114,9 +114,9 @@ sqlDb.SqlServerRawForUpdate<User>()
       .Where(u => u.Id == 2)
       .ExecuteSqlRaw();
 // 產生 SQL：
-// -- {0} : user2
-// -- {1} : pwd2
-// -- {2} : 2
+// -- @P_0 : user2
+// -- @P_1 : pwd2
+// -- @P_2 : 2
 // UPDATE users
 //  SET username=@P_0, password=@P_1
 //  WHERE
@@ -130,9 +130,9 @@ sqlDb.SqlServerRawForUpdate<User>()
       .Where(u => u.Id == 6)
       .ExecuteSqlRaw();
 // 產生 SQL：
-// -- {0} : admin2
-// -- {1} : 5
-// -- {2} : 6
+// -- @P_0 : admin2
+// -- @P_1 : 5
+// -- @P_2 : 6
 // UPDATE users
 //  SET username=@P_0
 //  WHERE
