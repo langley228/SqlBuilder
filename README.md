@@ -29,18 +29,38 @@ var pgDb = new SampleDbContext(DbProvider.Npgsql, "Host=localhost;Port=5432;Data
 pgDb.SqlRawFoDelete<User>()
     .Where(u => u.Id == 1)
     .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : 1
+// DELETE FROM users
+//  WHERE
+// (id={0})
 
 // 執行 UPDATE
 pgDb.SqlRawForUpdate<User>()
     .Set(u => u.Username, "admin")
     .Where(u => u.Id == 1)
     .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : admin
+// -- {1} : 1
+// UPDATE users
+//  SET username={0}
+//  WHERE
+// (id={1})
 
 // 執行多欄位 UPDATE
 pgDb.SqlRawForUpdate<User>()
     .Set(new { Username = "user2", Password = "pwd2" })
     .Where(u => u.Id == 2)
     .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : user2
+// -- {1} : pwd2
+// -- {2} : 2
+// UPDATE users
+//  SET username={0}, password={1}
+//  WHERE
+// (id={2})
 
 // 多語句組合（Update + Delete）
 pgDb.SqlRawForUpdate<User>()
@@ -49,6 +69,18 @@ pgDb.SqlRawForUpdate<User>()
     .SqlRawFoDelete()
     .Where(u => u.Id == 6)
     .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : admin2
+// -- {1} : 5
+// -- {2} : 6
+// UPDATE users
+//  SET username={0}
+//  WHERE
+// (id={1})
+// ;
+// DELETE FROM users
+//  WHERE
+// (id={2})
 
 // SQL Server 範例
 var sqlDb = new SampleDbContext(DbProvider.SqlServer, "Server=localhost;Database=sampledb;User Id=sa;Password=yourpassword;TrustServerCertificate=True;");
@@ -57,12 +89,58 @@ var sqlDb = new SampleDbContext(DbProvider.SqlServer, "Server=localhost;Database
 sqlDb.SqlServerRawFoDelete<User>()
       .Where(u => u.Id == 1)
       .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : 1
+// DELETE FROM users
+//  WHERE
+// (id=@P_0)
 
 // 執行 UPDATE
 sqlDb.SqlServerRawForUpdate<User>()
       .Set(u => u.Username, "admin")
       .Where(u => u.Id == 1)
       .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : admin
+// -- {1} : 1
+// UPDATE users
+//  SET username=@P_0
+//  WHERE
+// (id=@P_1)
+
+// 執行多欄位 UPDATE
+sqlDb.SqlServerRawForUpdate<User>()
+      .Set(new { Username = "user2", Password = "pwd2" })
+      .Where(u => u.Id == 2)
+      .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : user2
+// -- {1} : pwd2
+// -- {2} : 2
+// UPDATE users
+//  SET username=@P_0, password=@P_1
+//  WHERE
+// (id=@P_2)
+
+// 多語句組合（Update + Delete）
+sqlDb.SqlServerRawForUpdate<User>()
+      .Set(u => u.Username, "admin2")
+      .Where(u => u.Id == 5)
+      .SqlRawFoDelete()
+      .Where(u => u.Id == 6)
+      .ExecuteSqlRaw();
+// 產生 SQL：
+// -- {0} : admin2
+// -- {1} : 5
+// -- {2} : 6
+// UPDATE users
+//  SET username=@P_0
+//  WHERE
+// (id=@P_1)
+// ;
+// DELETE FROM users
+//  WHERE
+// (id=@P_2)
 ```
 
 ## 執行 SQL
@@ -73,7 +151,7 @@ sqlDb.SqlServerRawForUpdate<User>()
 
 ## 參數化查詢
 
-SqlBuilder 會自動將參數以 `{0}`、`{1}`... 方式產生，並對應參數陣列，防止 SQL Injection。
+SqlBuilder 會自動將參數以 `{0}`、`{1}`... 或 `@P_0`、`@P_1` 方式產生，並對應參數陣列，防止 SQL Injection。
 
 ## 範例專案
 
