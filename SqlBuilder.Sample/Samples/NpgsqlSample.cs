@@ -4,7 +4,7 @@ using System;
 
 namespace SqlBuilder.Sample.Samples
 {
-    using SqlBuilder.NpgsqlSql;
+    using SqlBuilder.Npgsql;
 
     class NpgsqlSample
     {

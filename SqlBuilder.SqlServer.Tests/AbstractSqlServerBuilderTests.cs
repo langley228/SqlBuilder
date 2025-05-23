@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using SqlBuilder.SqlServer;
 
-namespace SqlBuilder.SqlServerSql.Tests
+namespace SqlBuilder.SqlServer.Tests
 {
     /// <summary>
     /// 測試 AbstractSqlServerBuilder 產生 SQL 是否正確。

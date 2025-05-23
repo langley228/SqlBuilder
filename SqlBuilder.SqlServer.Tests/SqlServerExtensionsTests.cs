@@ -2,9 +2,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
-using SqlBuilder.SqlServer;
 
-namespace SqlBuilder.SqlServerSql.Tests
+namespace SqlBuilder.SqlServer.Tests
 {
     /// <summary>
     /// 測試 SqlServer 擴充方法產生 SQL 是否正確。

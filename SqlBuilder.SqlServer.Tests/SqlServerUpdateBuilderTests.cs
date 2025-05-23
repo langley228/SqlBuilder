@@ -1,11 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SqlBuilder.SqlServer;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
 
-namespace SqlBuilder.SqlServerSql.Tests
+namespace SqlBuilder.SqlServer.Tests
 {
     /// <summary>
     /// 測試 SqlServerlUpdateBuilder 產生 UPDATE SQL 是否正確。

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace SqlBuilder.NpgsqlSql
+namespace SqlBuilder.Npgsql
 {
     /// <summary>
     /// Npgsql DELETE SQL 語句建構器，實作 ISqlRawDeleteBuilder 介面，提供 WHERE 條件設定與建構功能。

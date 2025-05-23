@@ -1,11 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-using NUnit.Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SqlBuilder.SqlServer;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
 
-namespace SqlBuilder.SqlServerSql.Tests
+namespace SqlBuilder.SqlServer.Tests
 {
     /// <summary>
     /// 測試 SqlServerDeleteBuilder 產生 DELETE SQL 是否正確。

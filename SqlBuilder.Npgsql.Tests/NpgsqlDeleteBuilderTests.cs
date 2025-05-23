@@ -2,10 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using NUnit.Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SqlBuilder.NpgsqlSql;
+using SqlBuilder.Npgsql;
 using System.Linq;
 
-namespace SqlBuilder.NpgsqlSql.Tests
+namespace SqlBuilder.Npgsql.Tests
 {
     /// <summary>
     /// 測試 NpgsqlDeleteBuilder 產生 DELETE SQL 是否正確。

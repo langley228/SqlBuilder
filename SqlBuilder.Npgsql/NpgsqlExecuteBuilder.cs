@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SqlBuilder.NpgsqlSql
+namespace SqlBuilder.Npgsql
 {
     /// <summary>
     /// Npgsql 可執行 SQL 語句建構器，實作 ISqlRawExecuteBuilder 介面，提供 DELETE、UPDATE 語句建構與執行功能。

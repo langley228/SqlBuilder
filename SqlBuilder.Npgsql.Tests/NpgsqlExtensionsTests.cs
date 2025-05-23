@@ -3,7 +3,7 @@ using NUnit.Framework;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SqlBuilder.NpgsqlSql.Tests
+namespace SqlBuilder.Npgsql.Tests
 {
     /// <summary>
     /// 測試 SqlBuilder.NpgsqlSql 擴充方法產生 SQL 是否正確。

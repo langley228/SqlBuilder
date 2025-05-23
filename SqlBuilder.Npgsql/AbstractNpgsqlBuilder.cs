@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace SqlBuilder.NpgsqlSql
+namespace SqlBuilder.Npgsql
 {
     /// <summary>
     /// 泛型抽象 Npgsql SQL 建構器，繼承自 AbstractNpgsqlBuilder，提供針對指定模型類型的建構功能。

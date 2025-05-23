@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SqlBuilder.NpgsqlSql
+namespace SqlBuilder.Npgsql
 {
     /// <summary>
     /// 提供 DbContext 擴充方法，用於建立 SQL 刪除與更新語句的建構器。

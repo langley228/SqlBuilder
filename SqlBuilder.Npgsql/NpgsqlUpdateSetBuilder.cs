@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace SqlBuilder.NpgsqlSql
+namespace SqlBuilder.Npgsql
 {
     /// <summary>
     /// Npgsql UPDATE SQL 語句 SET 子句建構器，實作 ISqlRawUpdateSetBuilder 介面，提供多欄位設定與累加功能。
