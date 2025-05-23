@@ -203,22 +203,27 @@ namespace SqlBuilder.NpgsqlSql
         /// <returns></returns>
         protected string GetParameterValue(object value)
         {
-            if (value is IEnumerable)
-            {
-                if (value is not string)
-                {
-                    var values = value as IEnumerable;
-                    List<string> parameterList = new List<string>();
-                    foreach (var item in values)
-                    {
-                        parameterList.Add(GetParameterValue(item));
-                    }
-                    return string.Join(",", parameterList);
-                }
-            }
             if (value == null)
-                return $"NULL";
-            this._parameters.Add(value);
+                return "NULL";
+
+            // byte[] 雖然是 IEnumerable，但應視為單一參數
+            if (value is string || value is byte[])
+            {
+                _parameters.Add(value);
+                return $"{{{_parameters.Count - 1}}}";
+            }
+
+            if (value is IEnumerable enumerable)
+            {
+                var parameterList = new List<string>();
+                foreach (var item in enumerable)
+                {
+                    parameterList.Add(GetParameterValue(item));
+                }
+                return string.Join(",", parameterList);
+            }
+
+            _parameters.Add(value);
             return $"{{{_parameters.Count - 1}}}";
         }
 
