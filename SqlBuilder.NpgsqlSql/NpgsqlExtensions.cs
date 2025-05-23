@@ -5,7 +5,7 @@ namespace SqlBuilder.NpgsqlSql
     /// <summary>
     /// 提供 DbContext 擴充方法，用於建立 SQL 刪除與更新語句的建構器。
     /// </summary>
-    public static class SqlExtensions
+    public static class NpgsqlExtensions
     {
         /// <summary>
         /// 建立針對指定模型類型的 DELETE SQL 語句建構器。
