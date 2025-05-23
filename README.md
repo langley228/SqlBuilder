@@ -86,7 +86,7 @@ pgDb.SqlRawForUpdate<User>()
 var sqlDb = new SampleDbContext(DbProvider.SqlServer, "Server=localhost;Database=sampledb;User Id=sa;Password=yourpassword;TrustServerCertificate=True;");
 
 // 執行 DELETE
-sqlDb.SqlServerRawFoDelete<User>()
+sqlDb.SqlRawForDelete<User>()
       .Where(u => u.Id == 1)
       .ExecuteSqlRaw();
 // 產生 SQL：
@@ -96,7 +96,7 @@ sqlDb.SqlServerRawFoDelete<User>()
 // (id=@P_0)
 
 // 執行 UPDATE
-sqlDb.SqlServerRawForUpdate<User>()
+sqlDb.SqlRawForUpdate<User>()
       .Set(u => u.Username, "admin")
       .Where(u => u.Id == 1)
       .ExecuteSqlRaw();
@@ -109,7 +109,7 @@ sqlDb.SqlServerRawForUpdate<User>()
 // (id=@P_1)
 
 // 執行多欄位 UPDATE
-sqlDb.SqlServerRawForUpdate<User>()
+sqlDb.SqlRawForUpdate<User>()
       .Set(new { Username = "user2", Password = "pwd2" })
       .Where(u => u.Id == 2)
       .ExecuteSqlRaw();
@@ -123,7 +123,7 @@ sqlDb.SqlServerRawForUpdate<User>()
 // (id=@P_2)
 
 // 多語句組合（Update + Delete）
-sqlDb.SqlServerRawForUpdate<User>()
+sqlDb.SqlRawForUpdate<User>()
       .Set(u => u.Username, "admin2")
       .Where(u => u.Id == 5)
       .SqlRawFoDelete()
