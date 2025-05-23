@@ -12,11 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\SqlBuilder.SqlServerSql\SqlBuilder.SqlServerSql.csproj" />
+	  <ProjectReference Include="..\SqlBuilder.SqlServer\SqlBuilder.SqlServer.csproj" />
 	</ItemGroup>
-
-  <ItemGroup>
-    <Using Include="NUnit.Framework" />
-  </ItemGroup>
 
 </Project>

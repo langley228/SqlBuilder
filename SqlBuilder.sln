@@ -5,15 +5,15 @@ VisualStudioVersion = 17.13.36105.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder", "SqlBuilder\SqlBuilder.csproj", "{41B8C9D8-6C80-448B-BEC1-6CAE0BF25654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.NpgsqlSql", "SqlBuilder.NpgsqlSql\SqlBuilder.NpgsqlSql.csproj", "{4BF8488B-3520-45C2-BA31-8613E7F1BEFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.Npgsql", "SqlBuilder.Npgsql\SqlBuilder.Npgsql.csproj", "{4BF8488B-3520-45C2-BA31-8613E7F1BEFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.Sample", "SqlBuilder.Sample\SqlBuilder.Sample.csproj", "{801E3309-AB00-4B15-A9CD-2756844F9DA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.SqlServerSql", "SqlBuilder.SqlServerSql\SqlBuilder.SqlServerSql.csproj", "{1860DF99-4EDD-4507-9B33-C8EB31C9788A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.SqlServer", "SqlBuilder.SqlServer\SqlBuilder.SqlServer.csproj", "{1860DF99-4EDD-4507-9B33-C8EB31C9788A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.NpgsqlSql.Tests", "SqlBuilder.NpgsqlSql.Tests\SqlBuilder.NpgsqlSql.Tests.csproj", "{32709BFF-C1EB-4440-AD7D-315566C5A045}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.Npgsql.Tests", "SqlBuilder.Npgsql.Tests\SqlBuilder.Npgsql.Tests.csproj", "{32709BFF-C1EB-4440-AD7D-315566C5A045}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.SqlServerSql.Tests", "SqlBuilder.SqlServerSql.Tests\SqlBuilder.SqlServerSql.Tests.csproj", "{DB8A4E8F-BC95-41F2-96CD-0EA7C183C125}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlBuilder.SqlServer.Tests", "SqlBuilder.SqlServer.Tests\SqlBuilder.SqlServer.Tests.csproj", "{DB8A4E8F-BC95-41F2-96CD-0EA7C183C125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

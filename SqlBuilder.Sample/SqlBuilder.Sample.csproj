@@ -6,9 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SqlBuilder.NpgsqlSql\SqlBuilder.NpgsqlSql.csproj" />
-    <ProjectReference Include="..\SqlBuilder.SqlServerSql\SqlBuilder.SqlServerSql.csproj" />
     <ProjectReference Include="..\SqlBuilder\SqlBuilder.csproj" />
+    <ProjectReference Include="..\SqlBuilder.Npgsql\SqlBuilder.Npgsql.csproj" />
+    <ProjectReference Include="..\SqlBuilder.SqlServer\SqlBuilder.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

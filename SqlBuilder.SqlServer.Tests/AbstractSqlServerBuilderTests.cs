@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using NUnit.Framework;
 using SqlBuilder.SqlServer;
 
 namespace SqlBuilder.SqlServerSql.Tests

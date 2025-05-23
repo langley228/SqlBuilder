@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SqlBuilder.NpgsqlSql\SqlBuilder.NpgsqlSql.csproj" />
+    <ProjectReference Include="..\SqlBuilder.Npgsql\SqlBuilder.Npgsql.csproj" />
   </ItemGroup>
 
 </Project>
